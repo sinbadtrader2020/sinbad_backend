@@ -1,0 +1,2 @@
+curl -i -H "Content-Type: application/json" -X POST -d '{"email": "admin", "password": "admin"}' http://localhost:5000/api/v1/login
+

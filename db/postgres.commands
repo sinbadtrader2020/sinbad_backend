@@ -1,0 +1,39 @@
+psql -c "\du"   # show all postgres users, use from terminal/command-line
+
+# using utility "createuser -- define a new PostgreSQL user account"
+# Sources:
+#   - https://www.codementor.io/engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb
+#   - https://www.postgresql.org/docs/9.5/static/app-createuser.html
+createuser halaltrading --superuser --createdb --login --pwprompt
+dropuser halaltrading
+
+createdb --owner=halaltrading halaltrading                # for new db
+createdb -O halaltrading -T halaltrading halaltrading-o1       # for copy db
+pg_dump halaltrading > halaltrading.sql                   # SQL Dump
+psql -U halaltrading -d halaltrading -1 -f halaltrading.sql    # Restore through SQL,
+                                                # -1/--single-transaction - Issue a BEGIN command before the first
+                                                # such option and a COMMIT command after the last one.
+
+
+user create:
+adduser halaltrading
+usermod -aG sudo halaltrading
+
+
+
+
+
+# For Linux
+    sudo su - postgres
+    psql
+
+# For Mac OS
+    psql postgres [sudo psql postgres]
+
+CREATE ROLE halaltrading;
+ALTER ROLE halaltrading WITH password '12345678';
+ALTER ROLE halaltrading WITH LOGIN;
+ALTER ROLE halaltrading WITH createdb;
+ALTER ROLE halaltrading WITH Superuser;
+\du
+\q

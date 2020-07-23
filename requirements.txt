@@ -1,0 +1,16 @@
+# The order of packages is significant, because pip processes them in the order
+# of appearance. Changing the order has an impact on the overall integration
+# process, which may cause wedges in the gate later.
+
+flask>=0.12.2		    # BSD
+flask-wtf>=0.14.2	    # BSD
+flask-login>=0.4.1	    # MIT
+flask-restful>=0.3.6    #
+flask-cors>=3.0.3       #
+psycopg2>=2.7.5         #
+psycopg2-binary>=2.7.5
+simplejson>=3.14.0      #
+reportlab>=3.4.0        # PDF
+passlib>=1.7.1          #
+pathlib>=1.0.1
+python-memcached>=1.59  #
