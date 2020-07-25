@@ -47,16 +47,12 @@ def login(app):
                                        offset=offset_value, qparam=True)
 
             if success and data and data[ApiConfig.DATA]:
-                password_hash = (data.get(ApiConfig.DATA)[0].get(UserConfig.PASSWORD))
-
-                status = helperfunction.verify_password(password, password_hash)
-
-                if status is False:
-                    success = False
-                else:
-                    data, success = query.get_record(table_name=dbname.DBClassName.USER_TABLE,
+                if data.get(ApiConfig.DATA)[0].get(UserConfig.PASSWORD) == password:
+                    data, success = query.get_record(table_name=dbname.DBClassName.USER_TABLE_VIEW,
                                                      field_name=field_value,
                                                      offset=offset_value, qparam=True)
+                else:
+                    success = False
 
         if success and data and data[ApiConfig.DATA]:
             return make_response(jsonify(data), HTTP_OK)
