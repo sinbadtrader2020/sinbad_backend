@@ -1,10 +1,11 @@
 from flask import request, abort, jsonify, make_response
+from itsdangerous import (TimedJSONWebSignatureSerializer as
+                          Serializer, BadSignature, SignatureExpired)
+
 from src.config import ApiConfig, UserConfig, APIMethod
 from src.dbconn import query, dbname
 from src.http.http import HTTP_OK, HTTP_BAD_REQUEST, HTTP_UNAUTHORIZED
 from src.utils import helperfunction
-from itsdangerous import (TimedJSONWebSignatureSerializer as
-                          Serializer, BadSignature, SignatureExpired)
 
 
 def generate_auth_token(id, app, expiration=600):

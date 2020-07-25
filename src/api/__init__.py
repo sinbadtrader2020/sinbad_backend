@@ -6,6 +6,7 @@ from functools import wraps
 from datetime import date
 
 from src.api.login import login
+from src.api.registration import registration
 from src.utils import pmemcached
 from src import dbconn
 
@@ -61,6 +62,7 @@ def create_app(config_name):
     pmemcachedapi = pmemcached.connectmemcached()
 
     login(app)
+    registration(app)
 
     return app
 

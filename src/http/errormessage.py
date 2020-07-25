@@ -1,11 +1,11 @@
 error_types = {
-    'UNIQUE_VIOLATION': 'is already exists.',
+    'UNIQUE_VIOLATION': 'already exists.',
     'NOT_NULL_VIOLATION': 'field blank.',
     'INVALID_TEXT_REPRESENTATION': 'invalid input.'
 }
 
 error_names = {
-    'pr_employee_emp_email_key': 'Email',
+    'ht_user_email_key': 'Email',
 }
 
 ErrorMessage = {

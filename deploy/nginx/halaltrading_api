@@ -1,9 +1,9 @@
 server {
     listen 80;
-    server_name webapi.payconz.com;
+    server_name webapi.halaltrading.com;
 
     location / {
         include uwsgi_params;
-        uwsgi_pass unix:/usr/local/src/payroll/payroll.sock;
+        uwsgi_pass unix:/usr/local/src/halaltrading/halaltrading.sock;
     }
 }

@@ -27,3 +27,7 @@ def get_current_date():
 def get_current_time():
     now = datetime.now()
     return now.strftime("%H:%M:%S")
+
+
+def get_current_date_and_time():
+    return datetime.now()

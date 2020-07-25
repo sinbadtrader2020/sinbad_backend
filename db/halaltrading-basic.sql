@@ -35,3 +35,6 @@ CREATE TABLE ht_user (
 -----------------------------
 ----------- VIEW  -----------
 -----------------------------
+
+CREATE OR REPLACE VIEW ht_user_view AS
+select id, first_name, last_name, email, city, mobile_number, language, user_create, status from ht_user;

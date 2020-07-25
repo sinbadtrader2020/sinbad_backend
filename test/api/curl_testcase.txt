@@ -1,2 +1,6 @@
+Login:
 curl -i -H "Content-Type: application/json" -X POST -d '{"email": "admin", "password": "admin"}' http://localhost:5000/api/v1/login
+
+Registration:
+curl -i -H "Content-Type: application/json" -X POST -d '{"first_name":"Md. Shafiul", "last_name": "Kabir", "email":"shafiul@tirzok.com", "city":"Dhaka", "country":"Bangladesh", "mobile_number":"01870749003", "language":"ENGLISH", "password":"admin"}' http://localhost:5000/api/v1/registration
 

@@ -238,14 +238,14 @@ def get_error_message(error):
     return error_name + " " + error_type, errorcodes.lookup(error.pgcode)
 
 
-def _make_gpd_response(data, success, **kwargs):
+def _make_gpd_response(data, success, reponse=HTTP_BAD_REQUEST, **kwargs):
     status_code = HTTP_OK  # get_status_code(HTTP_OK)
     if success:
         if not data[ApiConfig.DATA]:
             status_code = HTTP_NO_CONTENT  # get_status_code(HTTP_NO_CONTENT)
     else:
         # status_code = get_status_code(HTTP_UNPROCESSABLE_ENTITY)
-        status_code = HTTP_BAD_REQUEST
+        status_code = reponse
         if ApiConfig.MESSAGE not in data:
             abort(HTTP_UNPROCESSABLE_ENTITY, data[ApiConfig.ERROR])
         else:
@@ -254,11 +254,11 @@ def _make_gpd_response(data, success, **kwargs):
     return make_response(jsonify(data), status_code)
 
 
-def _make_pp_response(data, success, **kwargs):
+def _make_pp_response(data, success, reponse=HTTP_BAD_REQUEST, **kwargs):
     status_code = HTTP_CREATED  # get_status_code(HTTP_CREATED)
     if not success:
         # status_code = get_status_code(HTTP_UNPROCESSABLE_ENTITY)
-        status_code = HTTP_BAD_REQUEST
+        status_code = reponse
         if ApiConfig.MESSAGE not in data:
             error_msg, error = get_error_message(data[ApiConfig.ERROR])
             if error_msg is not None:
@@ -276,5 +276,5 @@ _RESPONSE[DELETE] = _make_gpd_response
 _RESPONSE[POST] = _make_pp_response
 
 
-def get_response(data, success, method):
-    return _RESPONSE[method](data, success)
+def get_response(data, success, method, reponse):
+    return _RESPONSE[method](data, success, reponse)
