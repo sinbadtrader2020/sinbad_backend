@@ -7,6 +7,7 @@ class ApiConfig:
     ERROR               = 'error'
     MESSAGE             = 'message'
     ID                  = 'id'
+    TOKEN               = 'token'
 
 
 class APIMethod:

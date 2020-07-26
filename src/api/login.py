@@ -6,6 +6,13 @@ from src.config import ApiConfig, UserConfig, APIMethod
 from src.dbconn import query, dbname
 from src.http.http import HTTP_OK, HTTP_BAD_REQUEST, HTTP_UNAUTHORIZED
 from src.utils import helperfunction
+from src.token.config import Payload
+from src.token import jwt_parser
+
+
+class CustomException(Exception):
+   """Base class for other exceptions"""
+   pass
 
 
 def generate_auth_token(id, app, expiration=600):
@@ -55,6 +62,23 @@ def login(app):
                     success = False
 
         if success and data and data[ApiConfig.DATA]:
+            t = helperfunction.get_current_date_and_time()
+
+            payload = {
+                Payload.AUDIENCE: app.config.get('SERVICE_ID'),
+                Payload.ISSUER: app.config.get('APPLICATION_ID'),
+                Payload.SUBJECT: app.config.get('DOMAIN'),
+                Payload.EXPIRATION: t,
+                UserConfig.EMAIL: email,
+            }
+
+            try:
+                response = jwt_parser.get_token(payload=payload, secret=app.config.get('SECRET_KEY'))
+                data[ApiConfig.TOKEN] = response
+
+            except CustomException:
+                print("This value is too small, try again!")
+
             return make_response(jsonify(data), HTTP_OK)
 
         data = {}

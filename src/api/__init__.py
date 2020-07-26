@@ -8,7 +8,8 @@ from datetime import date
 from src.api.login import login
 from src.api.registration import registration
 from src.utils import pmemcached
-from src import dbconn
+from src.api.apilist import apis
+from src.config import ApiConfig
 
 
 pmemcachedapi = None
@@ -35,9 +36,9 @@ def authenticate(func):
         print("Hello decorator")
         print(len(args), " ", args)
         print(len(kwargs), " ", kwargs)
-        print(request.headers.get('X-Token'))
+        print(request.headers.get(ApiConfig.TOKEN))
 
-        request.headers.get('X-Token')
+        request.headers.get(ApiConfig.TOKEN)
         # print(request.headers)
         return func(*args, **kwargs)
     return wrapper
@@ -59,6 +60,10 @@ def create_app(config_name):
               decorators=[authenticate])
 
     CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+    for key, value in apis.items():
+        api.add_resource(value, key)
+
     pmemcachedapi = pmemcached.connectmemcached()
 
     login(app)

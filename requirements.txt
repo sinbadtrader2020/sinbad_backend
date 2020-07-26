@@ -14,3 +14,5 @@ reportlab>=3.4.0        # PDF
 passlib>=1.7.1          #
 pathlib>=1.0.1
 python-memcached>=1.59  #
+jwt
+ciso8601>=2.1.3
