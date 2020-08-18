@@ -1,7 +1,7 @@
 class DBClassName:
 
     ######  TABLE NAME   #####
-    USER_TABLE          = 'ht_user'
+    USER_TABLE          = 'sf_user'
 
     ######  VIEW NAME   #####
-    USER_TABLE_VIEW     = 'ht_user_view'
+    USER_TABLE_VIEW     = 'sf_user_view'

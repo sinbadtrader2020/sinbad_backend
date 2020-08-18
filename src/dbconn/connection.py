@@ -40,8 +40,8 @@ class Connection:
 
 
 db_config = {
-    'db_name': 'halaltrading',
-    'db_username': 'halaltrading',
+    'db_name': 'sinbad',
+    'db_username': 'sinbad',
     'db_password': '12345678',
     'db_hostname': 'localhost',
     'db_port': 5432

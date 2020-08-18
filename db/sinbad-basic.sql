@@ -2,14 +2,14 @@
 ----------- TYPE  -----------
 -----------------------------
 
-CREATE TYPE HT_LANGUAGE AS ENUM (
+CREATE TYPE SF_LANGUAGE AS ENUM (
     'ENGLISH',
     'BANGLA',
     'ARABIC',
     'CHINESE'
 );
 
-CREATE TYPE HT_STATUS AS ENUM (
+CREATE TYPE SF_STATUS AS ENUM (
     'ACTIVE',
     'INACTIVE'
 );
@@ -18,7 +18,7 @@ CREATE TYPE HT_STATUS AS ENUM (
 ----------- TABLE -----------
 -----------------------------
 
-CREATE TABLE ht_user (
+CREATE TABLE sf_user (
   id                        SERIAL PRIMARY KEY,
   first_name                TEXT NOT NULL,
   last_name                 TEXT NOT NULL,
@@ -26,15 +26,15 @@ CREATE TABLE ht_user (
   city                      TEXT,
   country                   TEXT,
   mobile_number             TEXT,
-  language                  HT_LANGUAGE DEFAULT 'ENGLISH',
+  language                  SF_LANGUAGE DEFAULT 'ENGLISH',
   password                  TEXT,
   user_create               DATE,
-  status                    HT_STATUS DEFAULT 'ACTIVE'
+  status                    SF_STATUS DEFAULT 'ACTIVE'
 );
 
 -----------------------------
 ----------- VIEW  -----------
 -----------------------------
 
-CREATE OR REPLACE VIEW ht_user_view AS
-select id, first_name, last_name, email, city, mobile_number, language, user_create, status from ht_user;
+CREATE OR REPLACE VIEW sf_user_view AS
+select id, first_name, last_name, email, city, mobile_number, language, user_create, status from sf_user;

@@ -8,7 +8,7 @@ from src.api import create_app
 from config import Config
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--config_path', default='/usr/local/src/halaltrading/config.ini', help='Absolute Config Path')
+parser.add_argument('--config_path', default='/usr/local/src/sinbad/config.ini', help='Absolute Config Path')
 args = parser.parse_args()
 
 config_file = Path(args.config_path)

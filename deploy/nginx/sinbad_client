@@ -1,7 +1,7 @@
 server {
     listen 80;
-    server_name halaltrading.com www.halaltrading.com;
-    root /usr/local/src/halaltrading-client/build;
+    server_name sinbad.com www.sinbad.com;
+    root /usr/local/src/sinbad-client/build;
     index index.html index.htm index.nginx-debian.html;
     location / {
         try_files $uri /index.html;
