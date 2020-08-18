@@ -5,7 +5,7 @@ error_types = {
 }
 
 error_names = {
-    'ht_user_email_key': 'Email',
+    'sf_user_email_key': 'Email',
 }
 
 ErrorMessage = {
