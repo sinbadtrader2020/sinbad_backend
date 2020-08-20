@@ -5,8 +5,8 @@ from flask_cors import CORS
 from functools import wraps
 from datetime import date
 
-from src.api.login import login
-from src.api.registration import registration
+from src.api.signin import signin
+from src.api.signup import signup
 from src.utils import pmemcached
 from src.api.apilist import apis
 from src.config import ApiConfig
@@ -66,8 +66,8 @@ def create_app(config_name):
 
     pmemcachedapi = pmemcached.connectmemcached()
 
-    login(app)
-    registration(app)
+    signin(app)
+    signup(app)
 
     return app
 

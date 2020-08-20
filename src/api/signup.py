@@ -20,12 +20,12 @@ def generate_auth_token(id, app, expiration=600):
     return s.dumps({'id': id})
 
 
-def registration(app):
+def signup(app):
 
     @app.route('{prefix}/v{version}/registration'
                .format(prefix=app.config[ApiConfig.REST_URL_PREFIX],
                        version=app.config[ApiConfig.API_VERSION]), methods=[APIMethod.POST])
-    def registration_api():
+    def signup_api():
         email       = request.json.get(UserConfig.EMAIL)
         password    = request.json.get(UserConfig.PASSWORD)
         if email is None or password is None:

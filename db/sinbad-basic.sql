@@ -39,4 +39,4 @@ CREATE TABLE sf_user (
 -----------------------------
 
 CREATE OR REPLACE VIEW sf_user_view AS
-select id, first_name, last_name, email, street_address, city, mobile_number, language, user_create, zip_code, status from sf_user;
+select id, first_name, last_name, email, street_address, city, country, mobile_number, language, user_create, zip_code, status from sf_user;

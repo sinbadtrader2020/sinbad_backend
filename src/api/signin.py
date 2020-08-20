@@ -20,14 +20,14 @@ def generate_auth_token(id, app, expiration=600):
     return s.dumps({'id': id})
 
 
-def login(app):
+def signin(app):
     admin_user = ApiConfig.ADMIN
     admin_passwd = app.config[ApiConfig.ADMIN_PASSWORD]
 
     @app.route('{prefix}/v{version}/login'
                .format(prefix=app.config[ApiConfig.REST_URL_PREFIX],
                        version=app.config[ApiConfig.API_VERSION]), methods=[APIMethod.POST])
-    def login_api():
+    def signin_api():
         email       = request.json.get(UserConfig.EMAIL)
         password    = request.json.get(UserConfig.PASSWORD)
         if email is None or password is None:
