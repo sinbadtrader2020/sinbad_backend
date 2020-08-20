@@ -24,7 +24,7 @@ def signin(app):
     admin_user = ApiConfig.ADMIN
     admin_passwd = app.config[ApiConfig.ADMIN_PASSWORD]
 
-    @app.route('{prefix}/v{version}/login'
+    @app.route('{prefix}/v{version}/signin'
                .format(prefix=app.config[ApiConfig.REST_URL_PREFIX],
                        version=app.config[ApiConfig.API_VERSION]), methods=[APIMethod.POST])
     def signin_api():

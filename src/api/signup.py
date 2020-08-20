@@ -22,7 +22,7 @@ def generate_auth_token(id, app, expiration=600):
 
 def signup(app):
 
-    @app.route('{prefix}/v{version}/registration'
+    @app.route('{prefix}/v{version}/signup'
                .format(prefix=app.config[ApiConfig.REST_URL_PREFIX],
                        version=app.config[ApiConfig.API_VERSION]), methods=[APIMethod.POST])
     def signup_api():
