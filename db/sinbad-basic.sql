@@ -23,11 +23,13 @@ CREATE TABLE sf_user (
   first_name                TEXT NOT NULL,
   last_name                 TEXT NOT NULL,
   email                     TEXT NOT NULL UNIQUE,
+  mobile_number             TEXT NOT NULL,
+  password                  TEXT NOT NULL,
+  street_address            TEXT,
   city                      TEXT,
   country                   TEXT,
-  mobile_number             TEXT,
+  zip_code                  TEXT,
   language                  SF_LANGUAGE DEFAULT 'ENGLISH',
-  password                  TEXT,
   user_create               DATE,
   status                    SF_STATUS DEFAULT 'ACTIVE'
 );
@@ -37,4 +39,4 @@ CREATE TABLE sf_user (
 -----------------------------
 
 CREATE OR REPLACE VIEW sf_user_view AS
-select id, first_name, last_name, email, city, mobile_number, language, user_create, status from sf_user;
+select id, first_name, last_name, email, street_address, city, mobile_number, language, user_create, zip_code, status from sf_user;

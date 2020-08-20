@@ -22,11 +22,13 @@ class User(DBAbstract):
                  first_name=None,
                  last_name=None,
                  email=None,
+                 mobile_number=None,
+                 password=None,
+                 street_address=None,
                  city=None,
                  country=None,
-                 mobile_number=None,
+                 zip_code=None,
                  language=None,
-                 password=None,
                  user_create=None,
                  status=None,
                  **kwargs):
@@ -34,10 +36,12 @@ class User(DBAbstract):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
+        self.mobile_number = mobile_number
+        self.password = password
+        self.street_address=street_address
         self.city = city
         self.country = country
-        self.mobile_number = mobile_number
+        self.zip_code=zip_code
         self.language = language
-        self.password = password
         self.user_create = user_create
         self.status = status
