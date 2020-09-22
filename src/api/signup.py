@@ -40,7 +40,6 @@ def signup(app):
 
         if success and data and data[ApiConfig.DATA]:
             data, success = get_query.get_user_by_id(data[ApiConfig.DATA][0].get(ApiConfig.ID))
-            print(data, '--->', success)
             t = helperfunction.get_current_date_and_time()
 
             payload = {
