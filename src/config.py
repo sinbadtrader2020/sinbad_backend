@@ -8,7 +8,7 @@ class ApiConfig:
     MESSAGE             = 'message'
     ID                  = 'id'
     TOKEN               = 'token'
-    RESET_PASSWORD      = '123456789'
+    RESET_PASSWORD      = '0123456789'
 
 
 class APIMethod:

@@ -1,0 +1,20 @@
+from flask_restful import Resource, request
+from flask import make_response
+
+from src.config import ApiConfig
+from src.http import http
+from src.user.user import reset_password
+
+
+class ResetPassword(Resource):
+    def post(self):
+        data, response = reset_password(request.json)
+        message = {ApiConfig.MESSAGE: data}
+        return make_response(message, response)
+
+
+class ForgetPassword(Resource):
+    def post(self):
+        data, response = reset_password(request.json)
+        message = {ApiConfig.MESSAGE: data}
+        return make_response(message, response)
