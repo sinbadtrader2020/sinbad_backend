@@ -1,5 +1,5 @@
 from src.dbconn import query, dbname
-from src.config import ApiConfig, UserConfig
+from src.config import ApiConfig, UserConfig, CompanyConfig
 
 
 def get_all_user():
@@ -25,4 +25,15 @@ def get_user_by_email_view(email):
     result, success = query.get_record(table_name=dbname.DBClassName.USER_TABLE_VIEW,
                                      field_name=UserConfig.EMAIL,
                                      offset=email)
+    return result, success
+
+def get_company_details(symbol=None):
+    result= {}
+    success = False
+    if symbol==None:
+        result, success = query.get_record(table_name=dbname.DBClassName.COMPANY, group=True)
+    else:
+        result, success = query.get_record(table_name=dbname.DBClassName.COMPANY,
+                                           field_name=CompanyConfig.ACT_SYMBOL,
+                                           offset=symbol)
     return result, success

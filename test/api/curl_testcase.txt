@@ -12,3 +12,7 @@ user:
 curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/user
 curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/user/1
 curl -i -H "token:------" -H "Content-Type: application/json" -X POST -d '{"last_name": "Kabir"}' http://localhost:5000/api/v1/user/1
+
+company:
+curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/company
+curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/company/NEU

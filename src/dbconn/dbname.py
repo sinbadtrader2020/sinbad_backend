@@ -1,7 +1,10 @@
 class DBClassName:
 
-    ######  TABLE NAME   #####
+    ######  USER TABLE   #####
     USER_TABLE          = 'sf_user'
 
-    ######  VIEW NAME   #####
+    ######  USER VIEW   #####
     USER_TABLE_VIEW     = 'sf_user_view'
+
+    ######  COMPANY TABLE   #####
+    COMPANY = 'sf_companies'

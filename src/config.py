@@ -34,3 +34,18 @@ class UserConfig:
     LANGUAGE        = 'language'
     PASSWORD        = 'password'
     USERCREATETIME  = 'user_create'
+
+
+class CompanyConfig:
+    ACT_SYMBOL      = 'sf_act_symbol'
+    COMPANY_NAME    = 'sf_company_name'
+    SECURITY_NAME   = 'sf_security_name'
+    EXCHANGE        = 'sf_exchange'
+    CQS_SYMBOL      = 'sf_cqs_symbol'
+    ETF             = 'sf_etf'
+    ROUND_LOT_SIZE  = 'sf_round_lot_size'
+    TEST_ISSUE      = 'sf_test_issue'
+    NASDAQ_SYMBOL   = 'sf_nasdaq_symbol'
+    LAST_SCREENED   = 'sf_last_screened'
+    AAOIFI_COMPLIANT    = 'sf_aaoifi_compliant'
+    NC_REASON       = 'sf_nc_reason'

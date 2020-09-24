@@ -5,17 +5,13 @@ from src.dbapi import get_query, update_query
 from src.http import http
 
 
-class UserList(Resource):
+class CompanyList(Resource):
     def get(self):
-        data, success = get_query.get_all_user()
+        data, success = get_query.get_company_details()
         return make_response(data, http.HTTP_OK)
 
 
-class User(Resource):
+class Company(Resource):
     def get(self, id):
-        data, success = get_query.get_user_by_id(id)
-        return make_response(data, http.HTTP_OK)
-
-    def post(self, id):
-        data, success = update_query.update_user(request.json, id)
+        data, success = get_query.get_company_details(symbol=id)
         return make_response(data, http.HTTP_OK)
