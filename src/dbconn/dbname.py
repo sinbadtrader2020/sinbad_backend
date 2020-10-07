@@ -8,3 +8,6 @@ class DBClassName:
 
     ######  COMPANY TABLE   #####
     COMPANY = 'sf_companies'
+
+    ######  COMPANY VIEW   #####
+    COMPANY_VIEW = 'sf_companies_view'

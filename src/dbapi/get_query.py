@@ -1,5 +1,5 @@
 from src.dbconn import query, dbname
-from src.config import ApiConfig, UserConfig, CompanyConfig
+from src.config import ApiConfig, UserConfig, CompanyConfig, CompliantConfig
 
 
 def get_all_user():
@@ -44,13 +44,13 @@ def get_compliant_company_details(symbol=None):
     result= {}
     success = False
     if symbol==None:
-        result, success = query.get_record(table_name=dbname.DBClassName.COMPANY,
+        result, success = query.get_record(table_name=dbname.DBClassName.COMPANY_VIEW,
                                            field_name=CompanyConfig.AAOIFI_COMPLIANT,
-                                           offset=True)
+                                           offset=CompliantConfig.COMPLIANT)
     else:
         field_name = [CompanyConfig.AAOIFI_COMPLIANT, CompanyConfig.ACT_SYMBOL]
-        offset = [True, symbol]
-        result, success = query.get_record(table_name=dbname.DBClassName.COMPANY,
+        offset = [CompliantConfig.COMPLIANT, symbol]
+        result, success = query.get_record(table_name=dbname.DBClassName.COMPANY_VIEW,
                                            field_name=field_name,
                                            offset=offset, qparam=True)
     return result, success

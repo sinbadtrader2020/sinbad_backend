@@ -49,3 +49,9 @@ class CompanyConfig:
     LAST_SCREENED   = 'sf_last_screened'
     AAOIFI_COMPLIANT    = 'sf_aaoifi_compliant'
     NC_REASON       = 'sf_nc_reason'
+
+
+class CompliantConfig:
+    COMPLIANT           = 'COMPLIANT',
+    NONCOMPLIANT        = 'NON-COMPLIANT',
+    YELLOW              = 'YELLOW'
