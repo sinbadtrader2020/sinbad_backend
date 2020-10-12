@@ -7,6 +7,8 @@ from datetime import date
 
 from src.api.signin import signin
 from src.api.signup import signup
+from src.api.subscribe_user import subscribe_user
+from src.api.get_app_url import get_app_url_user
 from src.utils import pmemcached
 from src.api.apilist import apis
 from src.config import ApiConfig
@@ -68,6 +70,8 @@ def create_app(config_name):
 
     signin(app)
     signup(app)
+    subscribe_user(app)
+    get_app_url_user(app)
 
     return app
 

@@ -1,5 +1,6 @@
 from src.dbconn.dbabstract import DBAbstract
 
+
 class Company(DBAbstract):
     def __init__(self,
                  sf_act_symbol=None,
