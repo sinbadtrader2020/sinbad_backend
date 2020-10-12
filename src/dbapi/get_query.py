@@ -40,16 +40,16 @@ def get_company_details(symbol=None):
     return result, success
 
 
-def get_compliant_company_details(symbol=None):
+def get_compliant_type_company_details(compliant_type=CompliantConfig.COMPLIANT, symbol=None):
     result= {}
     success = False
     if symbol==None:
         result, success = query.get_record(table_name=dbname.DBClassName.COMPANY_VIEW,
                                            field_name=CompanyConfig.AAOIFI_COMPLIANT,
-                                           offset=CompliantConfig.COMPLIANT)
+                                           offset=compliant_type)
     else:
         field_name = [CompanyConfig.AAOIFI_COMPLIANT, CompanyConfig.ACT_SYMBOL]
-        offset = [CompliantConfig.COMPLIANT, symbol]
+        offset = [compliant_type, symbol]
         result, success = query.get_record(table_name=dbname.DBClassName.COMPANY_VIEW,
                                            field_name=field_name,
                                            offset=offset, qparam=True)

@@ -21,6 +21,12 @@ curl -i -H "token:------" -H "Content-Type: application/json" -X POST -d '{"emai
 company:
 curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/company
 curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/company/NEU
+curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/company/compliant
+curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/company/compliant/WYN
+curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/company/noncompliant
+curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/company/noncompliant/ZTR
+curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/company/yellow
+curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/company/yellow/ZX
 
 subscribe:
 curl -i -H "token:------" -H "Content-Type: application/json" -X POST -d '{"email": "zameer@tirzok.com"}' http://localhost:5000/api/v1/subscribe
