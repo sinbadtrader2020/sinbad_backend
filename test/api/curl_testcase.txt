@@ -28,6 +28,13 @@ curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://loca
 curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/company/yellow
 curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/company/yellow/ZX
 
+company in range:
+curl -i -H "token:------" -H "Content-Type: application/json" -X GET "http://localhost:5000/api/v1/company/noncompliant?offset=1190&limit=10"
+
+search:
+curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/company/search/ZX
+curl -i -H "token:------" -H "Content-Type: application/json" -X GET 'http://localhost:5000/api/v1/company/search/Chase%20Corporation%20Common%20Stock'
+
 subscribe:
 curl -i -H "token:------" -H "Content-Type: application/json" -X POST -d '{"email": "zameer@tirzok.com"}' http://localhost:5000/api/v1/subscribe
 

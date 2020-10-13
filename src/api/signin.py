@@ -51,13 +51,13 @@ def signin(app):
 
             # print(username, " ", password)
             data, success = query.get_record(table_name=dbname.DBClassName.USER_TABLE, field_name=field_value,
-                                       offset=offset_value, qparam=True)
+                                       field_value=offset_value, qparam=True)
 
             if success and data and data[ApiConfig.DATA]:
                 if data.get(ApiConfig.DATA)[0].get(UserConfig.PASSWORD) == password:
                     data, success = query.get_record(table_name=dbname.DBClassName.USER_TABLE_VIEW,
                                                      field_name=field_value,
-                                                     offset=offset_value, qparam=True)
+                                                     field_value=offset_value, qparam=True)
                 else:
                     success = False
 

@@ -9,6 +9,11 @@ class ApiConfig:
     ID                  = 'id'
     TOKEN               = 'token'
     RESET_PASSWORD      = '0123456789'
+    LIMIT               = 'limit'
+    OFFSET              = 'offset'
+    NEXT_OFFSET         = 'next_offset'
+    TOTAL_ITEM          = 'total_item'
+    COUNT               = 'count'
 
 
 class APIMethod:

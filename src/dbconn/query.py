@@ -41,7 +41,8 @@ def _execute_iud(sql, data, commit=False):
     return result, success
 
 
-def get_record(table_name=None, group=False, offset=0, limit='ALL', field_name=None, qparam=False):
+def get_record(table_name=None, group=False, offset=0, limit='ALL', field_name=None, field_value=None,
+               qparam=False):
     data = None
     if group:
         sql = """SELECT * from {0} LIMIT {1} OFFSET {2}""".format(table_name, limit, offset)
@@ -51,10 +52,21 @@ def get_record(table_name=None, group=False, offset=0, limit='ALL', field_name=N
             tmp += """ and {""" + str(i+1) + """} = %s"""
 
         sql = tmp.format(table_name, *field_name)
-        data = offset
+        data = field_value
     else:
-        sql = """SELECT * from {0} WHERE {1} = %s""".format(table_name, field_name)
-        data = (offset,)
+        print(offset, ' --> ', limit)
+        if offset and limit != 'ALL':
+            sql = """SELECT * from {0} WHERE {1} = %s LIMIT {2} OFFSET {3}""".format(
+                table_name, field_name, limit, offset)
+        if offset:
+            sql = """SELECT * from {0} WHERE {1} = %s OFFSET {2}""".format(
+                table_name, field_name, limit, offset)
+        if limit != 'ALL':
+            sql = """SELECT * from {0} WHERE {1} = %s LIMIT {2}""".format(
+                table_name, field_name, limit, offset)
+        else:
+            sql = """SELECT * from {0} WHERE {1} = %s""".format(table_name, field_name)
+        data = (field_value,)
 
     print(sql)
     return _execute_select(sql, data)
@@ -89,6 +101,26 @@ def get_count(table_name=None):
     sql = """SELECT COUNT(*) FROM {0}""".format(table_name)
 
     return _execute_select(sql)
+
+
+def get_count_item_wise(table_name=None, field_name=None, field_value=None):
+    sql = """SELECT COUNT({0}) FROM {1} where {2}=%s""".format(
+        field_name, table_name, field_name)
+
+    data = (field_value,)
+    return _execute_select(sql, data)
+
+
+def item_search(table_name=None, field_name=None, field_value=None):
+    tmp = """SELECT * from {0} WHERE {1} like %s"""
+    for i in range(1, len(field_name)):
+        tmp += """ or {""" + str(i + 1) + """} like %s"""
+
+    sql = tmp.format(table_name, *field_name)
+    data = field_value
+
+    print(sql)
+    return _execute_select(sql, data)
 
 
 def create_record(table_name=None, record=None, field_name=None, production=True):

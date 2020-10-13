@@ -17,7 +17,7 @@ class SimpleApi(Resource):
         print('SimpleApi')
         result, success = query.get_record(table_name=self.get_table,
                                      field_name=self.get_field,
-                                     offset=id)
+                                     field_value=id)
         return get_response(result, success, GET)
 
     def put(self, id):
@@ -40,7 +40,7 @@ class SimpleListApi(Resource):
     def get(self):
         result, success = query.get_record(table_name=self.get_table,
                                      group=True,
-                                     offset=0,
+                                     field_value=0,
                                      limit=ApiConfig.DEFAULT_GET_VALUE)
         return get_response(result, success, GET)
 
