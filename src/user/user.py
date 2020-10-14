@@ -5,6 +5,9 @@ from src.dbconn.dbclass.user import User
 from src.config import UserConfig, ApiConfig
 from src.utils.defaultclass import Struct
 from src.http import http
+from src.utils.random_string import generate_random_password
+from src.mail.mail_creator import send_password_change_message
+
 
 def reset_password(data):
     print(data[UserConfig.EMAIL])
@@ -15,7 +18,8 @@ def reset_password(data):
 
     user_details_obj = Struct(**user_details.get(ApiConfig.DATA)[0])
     user_details = User()
-    user_details.password = ApiConfig.RESET_PASSWORD
+    user_details.password = generate_random_password()
+    new_password = user_details.password
     user_details_str = json.dumps(user_details.__dict__, sort_keys=True, indent=1)
     user_details_json = json.loads(user_details_str)
 
@@ -23,5 +27,7 @@ def reset_password(data):
 
     if len(user_update.get(ApiConfig.DATA)) == 0 or sucess == False:
         return 'Fail to Update user Data', http.HTTP_NOT_MODIFIED
+
+    send_password_change_message(new_password, data[UserConfig.EMAIL])
 
     return 'Successfully user password Update', http.HTTP_ACCEPTED

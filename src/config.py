@@ -60,3 +60,7 @@ class CompliantConfig:
     COMPLIANT           = 'COMPLIANT',
     NONCOMPLIANT        = 'NON-COMPLIANT',
     YELLOW              = 'YELLOW'
+
+
+class MAILConfig:
+    SENDER              = 'marufcuet007@gmail.com'

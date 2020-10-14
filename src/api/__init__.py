@@ -12,6 +12,7 @@ from src.api.get_app_url import get_app_url_user
 from src.utils import pmemcached
 from src.api.apilist import apis
 from src.config import ApiConfig
+from src.mail.mailing import set_config
 
 
 pmemcachedapi = None
@@ -50,6 +51,17 @@ def create_app(config_name):
     app = Flask(__name__)
     app.config.from_object(config_name)
     app.json_encoder = CustomJSONEncoder
+
+    app.config.update(
+        MAIL_SERVER='smtp.gmail.com',
+        MAIL_PORT=465,
+        MAIL_USE_TLS=False,
+        MAIL_USE_SSL=True,
+        MAIL_USERNAME='marufcuet007@gmail.com',
+        MAIL_PASSWORD='lhvrqebkcjhatcuz'
+    )
+
+    set_config(app)
 
     # try:
     #     from flask_debugtoolbar import DebugToolbarExtension
