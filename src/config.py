@@ -39,6 +39,7 @@ class UserConfig:
     LANGUAGE        = 'language'
     PASSWORD        = 'password'
     USERCREATETIME  = 'user_create'
+    NEW_PASSWORD    = 'new_password'
 
 
 class CompanyConfig:

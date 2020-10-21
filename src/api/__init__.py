@@ -86,5 +86,3 @@ def create_app(config_name):
     get_app_url_user(app)
 
     return app
-
-

@@ -16,7 +16,7 @@ curl -i -H "token:------" -H "Content-Type: application/json" -X POST -d '{"last
 password:
 curl -i -H "token:------" -H "Content-Type: application/json" -X POST -d '{"email": "zameer@tirzok.com"}' http://localhost:5000/api/v1/forgetpassword
 curl -i -H "token:------" -H "Content-Type: application/json" -X POST -d '{"email": "zameer@tirzok.com"}' http://localhost:5000/api/v1/resetpassword
-
+curl -i -H "token:------" -H "Content-Type: application/json" -X POST -d '{"email": "shafiulkabir8@gmail.com", "password": "hLjcUfO2MP", "new_password":"marufcuet007"}' http://localhost:5000/api/v1/changepassword
 
 company:
 curl -i -H "token:------" -H "Content-Type: application/json" -X GET http://localhost:5000/api/v1/company
