@@ -6,11 +6,14 @@ abc = False
 
 def connectmemcached():
     global abc
+    global memclient
     if abc == False:
-        print("connect memcached===>")
         memclient = memcache.Client(['127.0.0.1:11211'], debug=0)
         print(memclient)
         abc = True
+        return memclient
+
+    return memclient
 
 
 def setvalue(key=None, value=None, time=43200):

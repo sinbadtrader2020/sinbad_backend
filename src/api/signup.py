@@ -5,7 +5,7 @@ from itsdangerous import (TimedJSONWebSignatureSerializer as
 from src.config import ApiConfig, UserConfig, APIMethod
 from src.dbapi import insert_query, get_query
 from src.http import http
-from src.utils import helperfunction
+from src.utils import helperfunction, pmemcached
 from src.token.config import Payload
 from src.token import jwt_parser
 
@@ -53,6 +53,7 @@ def signup(app):
             try:
                 response = jwt_parser.get_token(payload=payload, secret=app.config.get('SECRET_KEY'))
                 data[ApiConfig.TOKEN] = response
+                pmemcached.setvalue(key=response, value=email)
             except CustomException:
                 print("This value is too small, try again!")
             return make_response(jsonify(data), http.HTTP_CREATED)

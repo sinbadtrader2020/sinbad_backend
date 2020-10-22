@@ -5,7 +5,7 @@ from itsdangerous import (TimedJSONWebSignatureSerializer as
 from src.config import ApiConfig, UserConfig, APIMethod
 from src.dbconn import query, dbname
 from src.http.http import HTTP_OK, HTTP_BAD_REQUEST, HTTP_UNAUTHORIZED
-from src.utils import helperfunction
+from src.utils import helperfunction, pmemcached
 from src.token.config import Payload
 from src.token import jwt_parser
 
@@ -75,6 +75,7 @@ def signin(app):
             try:
                 response = jwt_parser.get_token(payload=payload, secret=app.config.get('SECRET_KEY'))
                 data[ApiConfig.TOKEN] = response
+                pmemcached.setvalue(key=response, value=email)
 
             except CustomException:
                 print("This value is too small, try again!")
@@ -83,6 +84,6 @@ def signin(app):
 
         data = {}
         data[ApiConfig.ERROR] = data if (data and data.get(ApiConfig.ERROR)) else 'Unauthorized'
-        data[ApiConfig.MESSAGE] = "Invalid Username and Password."
+        data[ApiConfig.MESSAGE] = "Invalid Username or Password."
 
         return make_response(jsonify(data), HTTP_UNAUTHORIZED)

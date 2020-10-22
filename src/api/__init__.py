@@ -1,3 +1,4 @@
+import flask_restful
 from flask import Flask, request
 from flask.json import JSONEncoder
 from flask_restful import Api
@@ -36,14 +37,23 @@ class CustomJSONEncoder(JSONEncoder):
 def authenticate(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
-        print("Hello decorator")
-        print(len(args), " ", args)
-        print(len(kwargs), " ", kwargs)
-        print(request.headers.get(ApiConfig.TOKEN))
+        token = request.headers.get(ApiConfig.TOKEN)
+        if token == None:
+            print('Token not exist in request')
+            flask_restful.abort(401)
 
-        request.headers.get(ApiConfig.TOKEN)
-        # print(request.headers)
-        return func(*args, **kwargs)
+        if pmemcachedapi == None:
+            print('pmemcachedapi is Null')
+            return flask_restful.abort(401)
+
+        key_value = pmemcachedapi.get(token)
+        print(key_value, type(key_value))
+
+        if key_value:
+            return func(*args, **kwargs)
+        else:
+            print('Corresponding token value is Null')
+            flask_restful.abort(401)
     return wrapper
 
 
@@ -77,7 +87,7 @@ def create_app(config_name):
 
     for key, value in apis.items():
         api.add_resource(value, key)
-
+    global pmemcachedapi
     pmemcachedapi = pmemcached.connectmemcached()
 
     signin(app)
