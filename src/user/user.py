@@ -40,7 +40,7 @@ def change_password(data):
 
 
     if user_details_obj.password != password:
-        return 'Password is Not Verified', http.HTTP_NOT_FOUND
+        return 'Invalid Credentials', http.HTTP_NOT_FOUND
 
     user_details = User()
     user_details.password = new_password
@@ -59,10 +59,14 @@ def change_password(data):
 
 def verify_user_code(data):
     verify_code = data[UserConfig.VERIFY_CODE]
+    email = data[UserConfig.EMAIL]
 
-    keyvalue = pmemcached.getvalue(verify_code)
+    key_value = pmemcached.getvalue(verify_code)
 
-    if keyvalue == None:
+    if key_value == None:
+        return 'Wrong Verify Code', http.HTTP_UNAUTHORIZED
+    
+    if email != key_value:
         return 'Wrong Verify Code', http.HTTP_UNAUTHORIZED
     else:
         return 'Successfully match with token', http.HTTP_ACCEPTED

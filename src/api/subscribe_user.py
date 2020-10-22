@@ -20,7 +20,7 @@ def subscribe_user(app):
 
         email = request.json.get(UserConfig.EMAIL)
         if success:
-            data[ApiConfig.MESSAGE] = 'Thanks for subscribing!' + email + \
+            data[ApiConfig.MESSAGE] = 'Thanks for subscribing! ' + email + \
                                       ' has been added to our mailing list.'
         else:
             data[ApiConfig.MESSAGE] = 'Already ' + email + ' has been added to our mailing list.'
