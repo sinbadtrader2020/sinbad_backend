@@ -14,6 +14,7 @@ from src.utils import pmemcached
 from src.api.apilist import apis
 from src.config import ApiConfig
 from src.mail.mailing import set_config
+from src.api.password import forgetpassword, user_verify_code, forget_password_change
 
 
 pmemcachedapi = None
@@ -94,5 +95,8 @@ def create_app(config_name):
     signup(app)
     subscribe_user(app)
     get_app_url_user(app)
+    forgetpassword(app)
+    user_verify_code(app)
+    forget_password_change(app)
 
     return app

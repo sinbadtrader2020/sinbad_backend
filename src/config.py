@@ -40,6 +40,7 @@ class UserConfig:
     PASSWORD        = 'password'
     USERCREATETIME  = 'user_create'
     NEW_PASSWORD    = 'new_password'
+    VERIFY_CODE     = 'verifycode'
 
 
 class CompanyConfig:

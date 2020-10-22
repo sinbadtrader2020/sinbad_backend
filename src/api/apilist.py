@@ -1,6 +1,6 @@
 from src.api.logout import Logout
 from src.api.user import User, UserList
-from src.api.password import ResetPassword, ForgetPassword, ChangePassword
+from src.api.password import ResetPassword, ChangePassword
 from src.api.company import Company, CompanyList, CompliantCompany, \
     CompliantCompanyList, NonCompliantCompany, NonCompliantCompanyList, \
     YellowCompany, YellowCompanyList, CompanySearch
@@ -13,7 +13,6 @@ apis = {
     '/user/<int:id>'        : User,
 
     '/resetpassword'        : ResetPassword,
-    '/forgetpassword'       : ForgetPassword,
     '/changepassword'       : ChangePassword,
     
     '/company'              : CompanyList,
