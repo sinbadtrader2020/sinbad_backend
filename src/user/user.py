@@ -20,7 +20,7 @@ def reset_password(data):
     verification_code = get_verification_code()
 
     user_details_obj = Struct(**user_details.get(ApiConfig.DATA)[0])
-    pmemcached.setvalue(key=verification_code, value=email, time=pro_time.min_to_second(min=12))
+    pmemcached.setvalue(key=verification_code, value=email, time=pro_time.min_to_second(min=10))
     forget_password_message(email, user_details_obj.first_name, verification_code)
 
     return 'User verification code send to mail', http.HTTP_ACCEPTED
@@ -54,7 +54,7 @@ def change_password(data):
 
     send_password_change_message(email, user_details_obj.first_name)
 
-    return 'Successfully user password Update', http.HTTP_ACCEPTED
+    return 'Successfully user password updated.', http.HTTP_ACCEPTED
 
 
 def verify_user_code(data):
@@ -64,12 +64,12 @@ def verify_user_code(data):
     key_value = pmemcached.getvalue(verify_code)
 
     if key_value == None:
-        return 'Wrong Verify Code', http.HTTP_UNAUTHORIZED
-    
+        return 'Wrong verification code.', http.HTTP_UNAUTHORIZED
+
     if email != key_value:
-        return 'Wrong Verify Code', http.HTTP_UNAUTHORIZED
+        return 'Wrong verification code.', http.HTTP_UNAUTHORIZED
     else:
-        return 'Successfully match with token', http.HTTP_ACCEPTED
+        return 'Successfully match with token.', http.HTTP_ACCEPTED
 
 
 def forget_change_password(data):
@@ -95,4 +95,4 @@ def forget_change_password(data):
 
     send_password_change_message(email, user_details_obj.first_name)
 
-    return 'Successfully user password Update', http.HTTP_ACCEPTED
+    return 'Successfully user password updated.', http.HTTP_ACCEPTED
